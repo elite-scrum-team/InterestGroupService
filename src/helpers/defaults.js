@@ -9,10 +9,7 @@ module.exports = {
     defaultConfig: {
         subscribe: 'POST',
         unsubscribe: 'DELETE',
-        userinfo: {
-            method: 'GET',
-            reqDesc: req => ({ userId: req.query.internalUserId, ...req.body })
-        },
+        userinfo: 'GET',
         send: 'POST'
     }
 }
