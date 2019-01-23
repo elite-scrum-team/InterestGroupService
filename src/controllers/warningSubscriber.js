@@ -2,8 +2,12 @@
 const db = require('../models')
 const defaultOperations = require('../helpers/defaultOperations')
 
+const sendFunction = async (reqData) => {
+    console.log(typeof reqData, reqData.warningId, reqData)
+    return ["Everything is fine"]
+}
 
 module.exports = {
-    ...defaultOperations(db.warningSubscriber, (instance => console.log("THIS SHOULD BE SENDING, NOT IMPLEMENTED YET", instance))),
+    ...defaultOperations(db.warningSubscriber, sendFunction),
     
 }
