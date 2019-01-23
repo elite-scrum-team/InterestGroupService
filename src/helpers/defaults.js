@@ -10,7 +10,10 @@ module.exports = {
         unsubscribe: 'DELETE',
         userinfo: {
             method: 'GET',
-            reqDesc: req => ({ ...req.query, userId: req.query.internalUserId })
+            reqDesc: req => { 
+                const { internalUserId, userId, ...rest } = req.query
+                return ({ userId: internalUserId, ...rest }) 
+            }
         },
         send: 'POST'
     }
