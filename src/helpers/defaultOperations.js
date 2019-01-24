@@ -18,4 +18,4 @@ module.exports = (model, sendAction) => ({
 
     send: (data) => 
         sendAction(data)
-})
+});
