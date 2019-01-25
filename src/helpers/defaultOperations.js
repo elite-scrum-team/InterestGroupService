@@ -1,22 +1,21 @@
 
 module.exports = (model, sendAction) => ({
-    subscribe: (args) =>
+    subscribe: (data) =>
         model
-        .create(args)
+        .create(data)
         .then(it => it.dataValues),
 
-    unsubscribe: (args) =>
+    unsubscribe: (data) =>
         model
-        .findOne({ where: args })
+        .findOne({ where: data })
         .then(it => it.destroy())
         .then(it => it.dataValues),
 
-    userinfo: (args) =>
+    userinfo: (data) =>
         model
-        .findOne({ where: args })
+        .findOne({ where: data })
         .then(it => it.dataValues),
 
-    send: (args) =>
-        model.findOne({ where: args })
-        .then(it => sendAction(it.dataValues.userIds))
-})
+    send: (data) => 
+        sendAction(data)
+});
