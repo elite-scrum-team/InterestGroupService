@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const app = express();
 
-db.sequelize.sync({ alter: true })
+db.sequelize.sync({ force: true })
 
 // Middleware
 app.use(bodyParser.json())

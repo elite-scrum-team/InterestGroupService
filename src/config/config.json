@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "Interest",
+    "username": "anders",
     "password": "WCJEzJed4bUhCp9",
-    "database": "Event",
+    "database": "Interest",
     "host": "35.228.83.127",
     "dialect": "mysql"
   }
