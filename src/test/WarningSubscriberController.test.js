@@ -21,7 +21,7 @@ const mockModels = makeMockModels({
     warningSubscriber: {
         findAll: sinon.stub(),
         create: sinon.stub(),
-
+        findOne: sinon.stub(),
     },
     sequelize: {
         Promise: {
@@ -46,6 +46,8 @@ describe('WarningSubsriber testing', () => {
 
     const resetStubs = () => {
         mockModels.warningSubscriber.findAll.resetHistory();
+        userStub.resetHistory();
+        notificationStub.resetHistory();
     };
 
     context('Testing sendFunction() when nobody is subscribed', () => {
@@ -124,6 +126,48 @@ describe('WarningSubsriber testing', () => {
 
         it('called warningSubscriber.findAll', () => {
             expect(result.dataValues.msg).to.eql('Emails where sent successfully');
+        });
+    });
+
+    context('Testing  subscribe', () => {
+
+        before(async () => {
+            mockModels.warningSubscriber.create.resolves([]);
+            result = await save.subscribe(warningSubscriber);
+        });
+
+        after(resetStubs);
+
+        it('called warningSubscriber.findAll', () => {
+            expect(mockModels.warningSubscriber.create).to.have.been.called;
+        });
+    });
+
+    /*context('Testing  unsubscribe', () => {
+
+        before(async () => {
+            mockModels.warningSubscriber.findOne.resolves([]);
+            result = await save.unsubscribe(warningSubscriber);
+        });
+
+        after(resetStubs);
+
+        it('called warningSubscriber.findAll', () => {
+            expect(mockModels.warningSubscriber.findOne).to.have.been.called;
+        });
+    });*/
+
+    context('Testing  userinfo', () => {
+
+        before(async () => {
+            mockModels.warningSubscriber.findOne.resolves([]);
+            result = await save.userinfo(warningSubscriber);
+        });
+
+        after(resetStubs);
+
+        it('called warningSubscriber.findAll', () => {
+            expect(mockModels.warningSubscriber.findOne).to.have.been.called;
         });
     });
 });
